@@ -78,7 +78,7 @@
                         <th scope="col">Customer Name</th>
                         <th scope="col">City</th>
                         <th  scope="col">Email</th>
-                        <th  scope="col">Action</th>
+                        <th  scope="col">Phone Number</th>
                     </tr>
                     </thead>
                 </table>
@@ -87,43 +87,45 @@
         </div>
     </div>
 
-    <div class="modal fade" id="customerModal" tabindex="-1" role="dialog" aria-labelledby="addCustomerModelLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="customerFormHeading">Add New Customer</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+</main>
+
+
+
+<main id="item">
+
+    <div class="container-fluid">
+
+        <div class="container customer-card card col-12 mt-5">
+            <div class="card-body">
+                <div class="container row">
+                    <h1 class="col-10">Items</h1>
+
+                    <button type="button" class="btn btn-primary col-2 ms-4 h-25 mt-3 ">Add Item</button>
+
+
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="customer_id" class="form-label">Customer ID :</label>
-                            <input type="text" class="form-control" id="customer_id">
-                        </div>
-                        <div class="mb-3">
-                            <label for="customerName" class="form-label">Customer Name :</label>
-                            <input type="text" class="form-control" id="customerName">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="city">City :</label>
-                            <input type="text" class="form-control" id="city">
-                        </div>
-                        <div class="mb-3">
-                            <label for="customerEmail" class="form-label">Email :</label>
-                            <input type="email" class="form-control" id="customerEmail">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button id="saveUpdateBtn" type="button" class="btn btn-success">Save Customer</button>
-                </div>
+
+
+
+
+                <table class="table table-success table-striped mt-3">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Item Dese</th>
+                        <th scope="col">Item Qty</th>
+                        <th  scope="col">Item Price</th>
+                    </tr>
+                    </thead>
+                </table>
+
             </div>
         </div>
     </div>
 
-</main>
 
+</main>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
