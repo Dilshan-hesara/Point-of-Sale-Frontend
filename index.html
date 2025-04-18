@@ -68,12 +68,10 @@
                 <div class="container row">
                     <h1 class="col-10">Customer</h1>
 
-                    <button type="button" class="btn btn-primary col-2 ms-4 h-25 mt-3 ">Add Customer</button>
+                    <button type="button" class="btn btn-primary col-2 ms-4 h-25 mt-3 " data-bs-toggle="modal" data-bs-target="#customerModal">Add Customer</button>
 
 
                 </div>
-
-
 
 
                 <table class="table table-success table-striped mt-3">
@@ -88,6 +86,44 @@
                     </thead>
                 </table>
 
+            </div>
+        </div>
+
+    </div>
+
+<!--   add customer from -->
+
+    <div class="modal fade" id="customerModal" tabindex="-1" role="dialog" aria-labelledby="addCustomerModelLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="customerFormHeading">Add New Customer</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="customer_id" class="form-label">Customer ID :</label>
+                            <input type="text" class="form-control" id="customer_id">
+                        </div>
+                        <div class="mb-3">
+                            <label for="customerName" class="form-label">Customer Name :</label>
+                            <input type="text" class="form-control" id="customerName">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="city">City :</label>
+                            <input type="text" class="form-control" id="city">
+                        </div>
+                        <div class="mb-3">
+                            <label for="customerEmail" class="form-label">Email :</label>
+                            <input type="email" class="form-control" id="customerEmail">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="saveUpdateBtn" type="button" class="btn btn-success">Save Customer</button>
+                </div>
             </div>
         </div>
     </div>
