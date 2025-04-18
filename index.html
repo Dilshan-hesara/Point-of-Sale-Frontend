@@ -213,7 +213,8 @@
         <div class="container customer-card card col-12 mt-5">
 
             <div class="card-body">
-                <div class="container row">
+                <div class="row mt-3 mb-3">
+
 
                     <h3 class="card-header-pills  mt-3 text-center" >Orders</h3>
 
@@ -263,38 +264,76 @@
 
 <!--                item selection-->
 
+                <div class="row mt-3 mb-3">
 
-                <h3 class="card-header-pills  mt-3 text-center" >Select Items</h3>
+                    <h3 class="card-header-pills  mt-3 text-center" >Select Items</h3>
 
-                <div class="col-md-6">
-                    <label for="code" class="form-label">Item Code :</label>
-                    <select name="" id="code" class="form-select" aria-label="Disabled select example">
-                        <option value="1" selected>select item code</option>
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <label for="description" class="form-label">Description :</label>
-                    <input type="text" class="form-control" id="description" disabled>
                 </div>
 
 
+                <div class="row mt-3 mb-3">
 
-                <div class="col-md-3">
-                    <label for="qty" class="form-label">Item Qty Av :</label>
-                    <input type="number" class="form-control" id="qty" disabled>
+                    <div class="col-md-6">
+                        <label for="code" class="form-label">Item Code :</label>
+                        <select name="" id="code" class="form-select" aria-label="Disabled select example">
+                            <option value="1" selected>select item code</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <label for="price" class="form-label">Item Price :</label>
-                    <input type="text" class="form-control" id="price" disabled>
+
+
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-6">
+                        <label for="description" class="form-label">Description :</label>
+                        <input type="text" class="form-control" id="description" disabled>
+                    </div>
+
+
+
                 </div>
-                <div class="col-md-3">
-                    <label for="getQty" class="form-label">Buy Qty :</label>
-                    <input type="number" class="form-control" id="getQty">
+
+
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-3">
+                        <label for="qty" class="form-label">Item Qty Av :</label>
+                        <input type="number" class="form-control" id="qty" disabled>
+                    </div>
+
                 </div>
+
+
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-6">
+                        <label for="price" class="form-label">Item Price :</label>
+                        <input type="text" class="form-control" id="price" disabled>
+                    </div>
+
+                </div>
+
+
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-3">
+                        <label for="getQty" class="form-label">Buy Qty :</label>
+                        <input type="number" class="form-control" id="getQty">
+                    </div>
+
+
+                </div>
+
+
 
 
                 <button type="submit" id="addItem" class="btn btn-primary">Add To Cart</button>
                 <button type="submit" id="placeOrder" class="btn btn-primary">Place Ordder</button>
+
+
+
+
+
+
+
+
+
 
 <!--                cart table-->
 
