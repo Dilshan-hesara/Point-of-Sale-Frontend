@@ -221,35 +221,47 @@
 
                 </div>
 
+<!--                Orders selection-->
+
                 <div class="row mt-3 mb-3">
 
+                    <div class="col-md-6  ">
+                        <label for="orderId" class="form-label">Order Id :</label>
+                        <input type="text" class="form-control" id="orderId" disabled>
                     </div>
 
-                <div class="col-md-6  ">
-                    <label for="orderId" class="form-label">Order Id :</label>
-                    <input type="text" class="form-control" id="orderId" disabled>
+
+
+
+                </div>
+
+                <div class="row mt-3 mb-3">
+
+                    <div class="col-md-6">
+                        <label for="custId" class="form-label">Customer Id :</label>
+                        <select name="" id="custId" class="form-select" aria-label="Disabled select example">
+                            <option value="1" selected>select customer id</option>
+                        </select>
+                    </div>
+
+
+
                 </div>
 
 
-                <div class="col-md-6">
-                    <label for="orderDate" class="form-label">Order Date :</label>
-                    <input type="date" class="form-control" id="orderDate">
-                </div>
+          <div class="row mt-3 mb-3">
 
 
-                <div class="col-md-6">
-                    <label for="custId" class="form-label">Customer Id :</label>
-                    <select name="" id="custId" class="form-select" aria-label="Disabled select example">
-                        <option value="1" selected>select customer id</option>
-                    </select>
-                </div>
+              <div class="col-md-6">
+                  <label for="custName" class="form-label">Customer Name :</label>
+                  <input type="text" class="form-control" id="custName" disabled>
+              </div>
 
-                <div class="col-md-6">
-                    <label for="custName" class="form-label">Customer Name :</label>
-                    <input type="text" class="form-control" id="custName" disabled>
-                </div>
+          </div>
 
 
+
+<!--                item selection-->
 
 
                 <h3 class="card-header-pills  mt-3 text-center" >Select Items</h3>
@@ -284,6 +296,7 @@
                 <button type="submit" id="addItem" class="btn btn-primary">Add To Cart</button>
                 <button type="submit" id="placeOrder" class="btn btn-primary">Place Ordder</button>
 
+<!--                cart table-->
 
                 <table class="table table-success table-striped mt-3">
                     <thead>
@@ -297,6 +310,9 @@
                     </tr>
                     </thead>
                 </table>
+
+
+<!--                Place Order-->
 
                 <h3 class="card-header-pills  mt-3 text-center" >Place Order</h3>
 
