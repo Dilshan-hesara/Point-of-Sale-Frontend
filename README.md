@@ -8,3 +8,7 @@
 
 
 <!-- sitemps> //https://www.gloomaps.com/7HpZHfeCXs -->
+
+
+## Assignment 07
+[Single Page App POS](https://github.com/Dilshan-hesara/Point-of-Sale-Frontend/blob/master/index.html)
