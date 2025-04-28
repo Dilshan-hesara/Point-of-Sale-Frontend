@@ -22,19 +22,19 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a id="customer_page" class="nav-link" aria-current="page" href="#">Customer</a>
+                        <a id="customer-nav" class="nav-link" aria-current="page" href="#" >Customer</a>
                     </li>
 
                     <li class="nav-item">
-                        <a id="item_page" class="nav-link" aria-current="page" href="#">Item</a>
+                        <a  id="item-nav"class="nav-link" aria-current="page" href="#">Item</a>
                     </li>
 
                     <li class="nav-item">
-                        <a id="order_page" class="nav-link" aria-current="page" href="#">Order</a>
+                        <a id="order-nav"class="nav-link" aria-current="page" href="#" >Order</a>
                     </li>
 
                     <li class="nav-item">
-                        <a id="orderDetails_page" class="nav-link" aria-current="page" href="#">OrderDetails</a>
+                        <a id="Ohistory-nav" class="nav-link" aria-current="page"href="#" >OrderDetails</a>
                     </li>
 
                 </ul>
@@ -51,39 +51,42 @@
 
 <!--        dash board-->
 
-<main id="Home">
 
-    <div class="container-fluid">
+<section class="hero" id="Dashboard-content">
 
-        <div class="container customer-card card col-12 mt-5">
+    <main id="Home">
 
-            <div class="card-body">
+        <div class="container-fluid">
 
-                <div class="row mt-3 mb-3">
-                    <h5>Dash borad </h5>
+            <div class="container customer-card card col-12 mt-5">
 
-                    </div>
+                <div class="card-body">
 
-               <div class="row mt-3 mb-3">
-                   <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                       <div class="progress-bar text-bg-success" style="width: 20%">20%</div>
-                   </div>
+                    <div class="row mt-3 mb-3">
+                        <h5>Dash borad </h5>
 
                     </div>
 
-               <div class="row mt-3 mb-3">
-                   <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                       <div class="progress-bar text-bg-info" style="width: 50%">50%</div>
-                   </div>
+                    <div class="row mt-3 mb-3">
+                        <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar text-bg-success" style="width: 20%">20%</div>
+                        </div>
 
                     </div>
 
-               <div class="row mt-3 mb-3">
+                    <div class="row mt-3 mb-3">
+                        <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar text-bg-info" style="width: 50%">50%</div>
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-3 mb-3">
 
 
                     </div>
 
-               <div class="row mt-3 mb-3">
+                    <div class="row mt-3 mb-3">
 
                     </div>
 
@@ -93,91 +96,101 @@
 
 
 
+                </div>
             </div>
-            </div>
-            </div>
-</main>
+        </div>
+    </main>
+
+
+</section>
 
 
 
 <!--    customer form-->
 
-<main id="customer">
+<section id="customer-content">
 
-    <div class="container-fluid">
+    <main id="customer">
 
-        <div class="container customer-card card col-12 mt-5">
-            <div class="card-body">
-                <div class="container row">
-                    <h1 class="col-10">Customer</h1>
+        <div class="container-fluid">
 
-                    <button type="button" class="btn btn-primary col-2 ms-4 h-25 mt-3 " data-bs-toggle="modal" data-bs-target="#customerModal">Add Customer</button>
+            <div class="container customer-card card col-12 mt-5">
+                <div class="card-body">
+                    <div class="container row">
+                        <h1 class="col-10">Customer</h1>
 
+                        <button type="button" class="btn btn-primary col-2 ms-4 h-25 mt-3 " data-bs-toggle="modal" data-bs-target="#customerModal">Add Customer</button>
+
+
+                    </div>
+
+
+                    <table class="table table-success table-striped mt-3">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">City</th>
+                            <th  scope="col">Email</th>
+                            <th  scope="col">Phone Number</th>
+                        </tr>
+                        </thead>
+                    </table>
 
                 </div>
+            </div>
 
+        </div>
 
-                <table class="table table-success table-striped mt-3">
-                    <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Customer Name</th>
-                        <th scope="col">City</th>
-                        <th  scope="col">Email</th>
-                        <th  scope="col">Phone Number</th>
-                    </tr>
-                    </thead>
-                </table>
+        <!--   add customer from -->
 
+        <div class="modal fade" id="customerModal" tabindex="-1" role="dialog" aria-labelledby="addCustomerModelLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="customerFormHeading">Add New Customer</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="customer_id" class="form-label">Customer ID :</label>
+                                <input type="text" class="form-control" id="customer_id">
+                            </div>
+                            <div class="mb-3">
+                                <label for="customerName" class="form-label">Customer Name :</label>
+                                <input type="text" class="form-control" id="customerName">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="city">City :</label>
+                                <input type="text" class="form-control" id="city">
+                            </div>
+                            <div class="mb-3">
+                                <label for="customerEmail" class="form-label">Email :</label>
+                                <input type="email" class="form-control" id="customerEmail">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="saveUpdateBtn" type="button" class="btn btn-success">Save Customer</button>
+                    </div>
+                </div>
             </div>
         </div>
 
-    </div>
 
-<!--   add customer from -->
-
-    <div class="modal fade" id="customerModal" tabindex="-1" role="dialog" aria-labelledby="addCustomerModelLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="customerFormHeading">Add New Customer</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="customer_id" class="form-label">Customer ID :</label>
-                            <input type="text" class="form-control" id="customer_id">
-                        </div>
-                        <div class="mb-3">
-                            <label for="customerName" class="form-label">Customer Name :</label>
-                            <input type="text" class="form-control" id="customerName">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="city">City :</label>
-                            <input type="text" class="form-control" id="city">
-                        </div>
-                        <div class="mb-3">
-                            <label for="customerEmail" class="form-label">Email :</label>
-                            <input type="email" class="form-control" id="customerEmail">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button id="saveUpdateBtn" type="button" class="btn btn-success">Save Customer</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    </main>
 
 
-</main>
+</section>
+
 
 
         <!--item from -->
 
-<main id="item">
+<section id="item-content">
+    <main id="item">
 
     <div class="container-fluid">
 
@@ -209,7 +222,7 @@
         </div>
     </div>
 
-<!--    add item from-->
+    <!--    add item from-->
     <div class="modal fade" id="itemModal" tabindex="-1" role="dialog" aria-labelledby="addItemModelLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -246,276 +259,341 @@
     </div>
 
 </main>
+</section>
+
 
 <!--   Order From-->
 
-<main id="Order">
+<section id="order-content">
+    <main id="Order">
 
-    <div class="container-fluid">
+        <div class="container-fluid">
 
-        <div class="container customer-card card col-12 mt-5">
+            <div class="container customer-card card col-12 mt-5">
 
-            <div class="card-body">
-                <div class="row mt-3 mb-3">
-
-
-                    <h3 class="card-header-pills  mt-3 text-center" >Orders</h3>
+                <div class="card-body">
+                    <div class="row mt-3 mb-3">
 
 
+                        <h3 class="card-header-pills  mt-3 text-center" >Orders</h3>
 
-                </div>
 
-<!--                Orders selection-->
 
-                <div class="row mt-3 mb-3">
-
-                    <div class="col-md-6  ">
-                        <label for="orderId" class="form-label">Order Id :</label>
-                        <input type="text" class="form-control" id="orderId" disabled>
                     </div>
 
+                    <!--                Orders selection-->
 
+                    <div class="row mt-3 mb-3">
 
-
-                </div>
-
-                <div class="row mt-3 mb-3">
-
-                    <div class="col-md-6">
-                        <label for="custId" class="form-label">Customer Id :</label>
-                        <select name="" id="custId" class="form-select" aria-label="Disabled select example">
-                            <option value="1" selected>select customer id</option>
-                        </select>
-                    </div>
-
-
-
-                </div>
-
-
-          <div class="row mt-3 mb-3">
-
-
-              <div class="col-md-6">
-                  <label for="custName" class="form-label">Customer Name :</label>
-                  <input type="text" class="form-control" id="custName" disabled>
-              </div>
-
-          </div>
-
-
-
-<!--                item selection-->
-
-                <div class="row mt-3 mb-3">
-
-                    <h3 class="card-header-pills  mt-3 text-center" >Select Items</h3>
-
-                </div>
-
-
-                <div class="row mt-3 mb-3">
-
-                    <div class="col-md-6">
-                        <label for="code" class="form-label">Item Code :</label>
-                        <select name="" id="code" class="form-select" aria-label="Disabled select example">
-                            <option value="1" selected>select item code</option>
-                        </select>
-                    </div>
-                </div>
-
-
-                <div class="row mt-3 mb-3">
-                    <div class="col-md-6">
-                        <label for="description" class="form-label">Description :</label>
-                        <input type="text" class="form-control" id="description" disabled>
-                    </div>
-
-
-
-                </div>
-
-
-                <div class="row mt-3 mb-3">
-                    <div class="col-md-3">
-                        <label for="qty" class="form-label">Item Qty Av :</label>
-                        <input type="number" class="form-control" id="qty" disabled>
-                    </div>
-
-                </div>
-
-
-                <div class="row mt-3 mb-3">
-                    <div class="col-md-6">
-                        <label for="price" class="form-label">Item Price :</label>
-                        <input type="text" class="form-control" id="price" disabled>
-                    </div>
-
-                </div>
-
-
-                <div class="row mt-3 mb-3">
-                    <div class="col-md-3">
-                        <label for="getQty" class="form-label">Buy Qty :</label>
-                        <input type="number" class="form-control" id="getQty">
-                    </div>
-
-
-                </div>
-
-
-
-
-                <button type="submit" id="addItem" class="btn btn-primary">Add To Cart</button>
-                <button type="submit" id="placeOrder" class="btn btn-primary">Place Ordder</button>
-
-
-
-
-
-
-
-
-
-
-<!--                cart table-->
-
-                <div class="row mt-3 mb-3">
-
-                    <table class="table table-success table-striped mt-3">
-                        <thead>
-                        <tr>
-                            <th scope="col">Item ID</th>
-                            <th scope="col">Item Dese</th>
-                            <th scope="col"> Qty</th>
-                            <th  scope="col">Item Price</th>
-                            <th  scope="col">Total  Price</th>
-                            <th  scope="col">Action</th>
-                        </tr>
-                        </thead>
-                    </table>
-
-                </div>
-
-
-
-<!--                Place Order-->
-
-                <div class="row mt-3 mb-3">
-
-                    <h3 class="card-header-pills  mt-3 text-center" >Place Order</h3>
-
-                </div>
-
-
-                <div class="row mt-3 mb-3">
-
-                    <div class="row">
-                        <div class="col-4">
-                            <label for="total" class="form-label">Total :</label>
-                            <input type="text" class="form-control" id="total" disabled>
-                        </div>
-                        <div class="col-4">
-                            <label for="discount" class="form-label">Discount :</label>
-                            <input type="text" class="form-control" id="discount">
-                        </div>
-                        <div class="col-4">
-                            <label for="subTotal" class="form-label">Sub Total :</label>
-                            <input type="text" class="form-control" id="subTotal" disabled>
-                        </div>
-                    </div>
-
-
-
-                </div>
-
-                <div class="row mt-3 mb-3">
-
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="cash" class="form-label">Cash :</label>
-                            <input type="text" class="form-control" id="cash">
+                        <div class="col-md-6  ">
+                            <label for="orderId" class="form-label">Order Id :</label>
+                            <input type="text" class="form-control" id="orderId" disabled>
                         </div>
 
-                        <div class="col-6">
-                            <label for="balance" class="form-label">Balance :</label>
-                            <input type="text" class="form-control" id="balance" disabled>
 
+
+
+                    </div>
+
+                    <div class="row mt-3 mb-3">
+
+                        <div class="col-md-6">
+                            <label for="custId" class="form-label">Customer Id :</label>
+                            <select name="" id="custId" class="form-select" aria-label="Disabled select example">
+                                <option value="1" selected>select customer id</option>
+                            </select>
                         </div>
+
+
+
                     </div>
-
-                </div>
-
-
-
-
-                <div class="row">
-                    <div class="col">
-                        <button type="submit" id="purchase" class="btn btn-success mt-3 mb-3">Purchase</button>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-
-
-</main>
-
-
-<!--    Order View-->
-
-<main id="orderView">
-
-    <div class="container-fluid">
-
-        <div class="container customer-card card col-12 mt-5">
-
-            <div class="card-body">
-                <div class="container row">
 
 
                     <div class="row mt-3 mb-3">
-                        <h3 class="card-header-pills  mt-3 text-center" >Order View </h3>
+
+
+                        <div class="col-md-6">
+                            <label for="custName" class="form-label">Customer Name :</label>
+                            <input type="text" class="form-control" id="custName" disabled>
+                        </div>
 
                     </div>
 
+
+
+                    <!--                item selection-->
+
+                    <div class="row mt-3 mb-3">
+
+                        <h3 class="card-header-pills  mt-3 text-center" >Select Items</h3>
+
+                    </div>
+
+
+                    <div class="row mt-3 mb-3">
+
+                        <div class="col-md-6">
+                            <label for="code" class="form-label">Item Code :</label>
+                            <select name="" id="code" class="form-select" aria-label="Disabled select example">
+                                <option value="1" selected>select item code</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row mt-3 mb-3">
+                        <div class="col-md-6">
+                            <label for="description" class="form-label">Description :</label>
+                            <input type="text" class="form-control" id="description" disabled>
+                        </div>
+
+
+
+                    </div>
+
+
+                    <div class="row mt-3 mb-3">
+                        <div class="col-md-3">
+                            <label for="qty" class="form-label">Item Qty Av :</label>
+                            <input type="number" class="form-control" id="qty" disabled>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row mt-3 mb-3">
+                        <div class="col-md-6">
+                            <label for="price" class="form-label">Item Price :</label>
+                            <input type="text" class="form-control" id="price" disabled>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row mt-3 mb-3">
+                        <div class="col-md-3">
+                            <label for="getQty" class="form-label">Buy Qty :</label>
+                            <input type="number" class="form-control" id="getQty">
+                        </div>
+
+
+                    </div>
+
+
+
+
+                    <button type="submit" id="addItem" class="btn btn-primary">Add To Cart</button>
+                    <button type="submit" id="placeOrder" class="btn btn-primary">Place Ordder</button>
+
+
+
+
+
+
+
+
+
+
+                    <!--                cart table-->
 
                     <div class="row mt-3 mb-3">
 
                         <table class="table table-success table-striped mt-3">
                             <thead>
                             <tr>
-                                <th scope="col">Order Id</th>
-                                <th scope="col">Order Date</th>
-                                <th scope="col">Item Code</th>
-                                <th  scope="col">Customer Id</th>
-                                <th  scope="col">Qty</th>
-                                <th  scope="col">Price</th>
-                                <th  scope="col">Discount</th>
-                                <th  scope="col">Sub Total</th>
+                                <th scope="col">Item ID</th>
+                                <th scope="col">Item Dese</th>
+                                <th scope="col"> Qty</th>
+                                <th  scope="col">Item Price</th>
+                                <th  scope="col">Total  Price</th>
+                                <th  scope="col">Action</th>
                             </tr>
                             </thead>
                         </table>
 
+                    </div>
+
+
+
+                    <!--                Place Order-->
+
+                    <div class="row mt-3 mb-3">
+
+                        <h3 class="card-header-pills  mt-3 text-center" >Place Order</h3>
+
+                    </div>
+
+
+                    <div class="row mt-3 mb-3">
+
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="total" class="form-label">Total :</label>
+                                <input type="text" class="form-control" id="total" disabled>
+                            </div>
+                            <div class="col-4">
+                                <label for="discount" class="form-label">Discount :</label>
+                                <input type="text" class="form-control" id="discount">
+                            </div>
+                            <div class="col-4">
+                                <label for="subTotal" class="form-label">Sub Total :</label>
+                                <input type="text" class="form-control" id="subTotal" disabled>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="row mt-3 mb-3">
+
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="cash" class="form-label">Cash :</label>
+                                <input type="text" class="form-control" id="cash">
+                            </div>
+
+                            <div class="col-6">
+                                <label for="balance" class="form-label">Balance :</label>
+                                <input type="text" class="form-control" id="balance" disabled>
+
+                            </div>
+                        </div>
 
                     </div>
 
 
 
 
-         </div>
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" id="purchase" class="btn btn-success mt-3 mb-3">Purchase</button>
+                        </div>
+                    </div>
 
-    </div>
+
+                </div>
+            </div>
         </div>
-    </div>
-</main>
+
+
+    </main>
+
+
+</section>
+
+
+
+<!--    Order View-->
+
+<section id="OrderHistory-content">
+
+    <main id="orderView">
+
+        <div class="container-fluid">
+
+            <div class="container customer-card card col-12 mt-5">
+
+                <div class="card-body">
+                    <div class="container row">
+
+
+                        <div class="row mt-3 mb-3">
+                            <h3 class="card-header-pills  mt-3 text-center" >Order View </h3>
+
+                        </div>
+
+
+                        <div class="row mt-3 mb-3">
+
+                            <table class="table table-success table-striped mt-3">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Order Id</th>
+                                    <th scope="col">Order Date</th>
+                                    <th scope="col">Item Code</th>
+                                    <th  scope="col">Customer Id</th>
+                                    <th  scope="col">Qty</th>
+                                    <th  scope="col">Price</th>
+                                    <th  scope="col">Discount</th>
+                                    <th  scope="col">Sub Total</th>
+                                </tr>
+                                </thead>
+                            </table>
+
+
+                        </div>
 
 
 
 
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+</section>
+
+
+
+
+
+
+
+<script src="assets/lib/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!--add single page-->
+<script>
+    $("#Dashboard-content").css("display", "block");
+    $("#customer-content").css("display", "none");
+    $("#item-content").css("display", "none");
+    $("#order-content").css("display", "none");
+    $("#OrderHistory-content").css("display", "none");
+
+    $("#customer-nav").on("click", function() {
+        $("#customer-content").css("display", "block");
+        $("#Dashboard-content").css("display", "none");
+        $("#item-content").css("display", "none");
+        $("#order-content").css("display", "none");
+        $("#OrderHistory-content").css("display", "none");
+    });
+
+    $("#item-nav").on("click", function() {
+        $("#item-content").css("display", "block");
+        $("#customer-content").css("display", "none");
+        $("#Dashboard-content").css("display", "none");
+        $("#order-content").css("display", "none");
+        $("#OrderHistory-content").css("display", "none");
+    });
+    $("#order-nav").on("click", function() {
+        $("#order-content").css("display", "block");
+        $("#item-content").css("display", "none");
+        $("#customer-content").css("display", "none");
+        $("#Dashboard-content").css("display", "none");
+        $("#OrderHistory-content").css("display", "none");
+    });
+
+    $("#Ohistory-nav").on("click", function() {
+        $("#OrderHistory-content").css("display", "block");
+        $("#order-content").css("display", "none");
+        $("#item-content").css("display", "none");
+        $("#customer-content").css("display", "none");
+        $("#Dashboard-content").css("display", "none");
+    });
+
+    $("#home-nav").on("click", function() {
+        $("#Dashboard-content").css("display", "block");
+        $("#OrderHistory-content").css("display", "none");
+        $("#order-content").css("display", "none");
+        $("#item-content").css("display", "none");
+        $("#customer-content").css("display", "none");
+    });
+
+
+</script>
 
 </body>
 </html>
