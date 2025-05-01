@@ -5,6 +5,79 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
+
+
+<!--    <style>-->
+<!--        /* ===== Color Palette ===== */-->
+<!--        :root {-->
+<!--            &#45;&#45;primary-dark: #1a1a2e;       /* Deep navy */-->
+<!--            &#45;&#45;secondary-dark: #16213e;     /* Dark blue */-->
+<!--            &#45;&#45;accent-blue: #0f4c75;        /* Rich blue */-->
+<!--            &#45;&#45;vibrant-teal: #00b4d8;       /* Teal */-->
+<!--            &#45;&#45;light-bg: #f8f9fa;           /* Off-white */-->
+<!--            &#45;&#45;success-green: #28a745;      /* Bootstrap green */-->
+<!--            &#45;&#45;danger-red: #dc3545;         /* Bootstrap red */-->
+<!--            &#45;&#45;text-light: #ffffff;         /* White text */-->
+<!--            &#45;&#45;text-dark: #212529;          /* Dark text */-->
+<!--        }-->
+
+<!--        /* ===== Navigation Bar ===== */-->
+<!--        .navbar {-->
+<!--            background-color: var(&#45;&#45;primary-dark) !important;-->
+<!--        }-->
+<!--        .navbar-brand {-->
+<!--            color: var(&#45;&#45;text-light) !important;-->
+<!--        }-->
+<!--        .nav-link {-->
+<!--            color: rgba(255, 255, 255, 0.85) !important;-->
+<!--        }-->
+<!--        .nav-link:hover {-->
+<!--            color: var(&#45;&#45;text-light) !important;-->
+<!--        }-->
+
+<!--        /* ===== Tables ===== */-->
+<!--        .table thead th {-->
+<!--            background-color: var(&#45;&#45;accent-blue);-->
+<!--            color: var(&#45;&#45;text-light);-->
+<!--        }-->
+<!--        .table-striped tbody tr:nth-of-type(odd) {-->
+<!--            background-color: rgba(242, 247, 252, 0.7);-->
+<!--        }-->
+
+<!--        /* ===== Buttons ===== */-->
+<!--        .btn-primary {-->
+<!--            background-color: var(&#45;&#45;vibrant-teal);-->
+<!--            border-color: var(&#45;&#45;vibrant-teal);-->
+<!--        }-->
+<!--        .btn-success {-->
+<!--            background-color: var(&#45;&#45;success-green);-->
+<!--            border-color: var(&#45;&#45;success-green);-->
+<!--        }-->
+<!--        .btn-danger {-->
+<!--            background-color: var(&#45;&#45;danger-red);-->
+<!--            border-color: var(&#45;&#45;danger-red);-->
+<!--        }-->
+
+<!--        /* ===== Cards ===== */-->
+<!--        .card-header {-->
+<!--            background-color: var(&#45;&#45;accent-blue);-->
+<!--            color: var(&#45;&#45;text-light);-->
+<!--        }-->
+
+<!--        /* ===== Forms ===== */-->
+<!--        .form-control:focus, .form-select:focus {-->
+<!--            border-color: var(&#45;&#45;vibrant-teal);-->
+<!--            box-shadow: 0 0 0 0.2rem rgba(0, 180, 216, 0.25);-->
+<!--        }-->
+
+<!--        /* ===== Progress Bars ===== */-->
+<!--        .progress-bar {-->
+<!--            background-color: var(&#45;&#45;vibrant-teal);-->
+<!--        }-->
+<!--        .bg-success {-->
+<!--            background-color: var(&#45;&#45;success-green) !important;-->
+<!--        }-->
+<!--    </style>-->
 </head>
 <body>
 
@@ -261,215 +334,127 @@
 <!--   Order From-->
 
 <section id="order-content">
+
     <main id="Order">
 
         <div class="container-fluid">
 
-            <div class="container customer-card card col-12 mt-5">
-
-                <div class="card-body">
-                    <div class="row mt-3 mb-3">
+            <div class="container card mt-5 mb-5">
 
 
-                        <h3 class="card-header-pills  mt-3 text-center" >Orders</h3>
+                <h3 class="card-header-pills mt-3 text-center" >Orders</h3>
 
-
-
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-6">
+                        <label for="orderId" class="form-label">Order Id :</label>
+                        <input type="text" class="form-control" id="orderId" disabled>
                     </div>
-
-                    <!--                Orders selection-->
-
-                    <div class="row mt-3 mb-3">
-
-                        <div class="col-md-6  ">
-                            <label for="orderId" class="form-label">Order Id :</label>
-                            <input type="text" class="form-control" id="orderId" disabled>
-                        </div>
-
-
-
-
+                    <div class="col-md-6">
+                        <label for="orderDate" class="form-label">Order Date :</label>
+                        <input type="date" class="form-control" id="orderDate">
                     </div>
-
-                    <div class="row mt-3 mb-3">
-
-                        <div class="col-md-6">
-                            <label for="custId" class="form-label">Customer Id :</label>
-                            <select name="" id="custId" class="form-select" aria-label="Disabled select example">
-                                <option value="1" selected>select customer id</option>
-                            </select>
-                        </div>
-
-
-
-                    </div>
-
-
-                    <div class="row mt-3 mb-3">
-
-
-                        <div class="col-md-6">
-                            <label for="custName" class="form-label">Customer Name :</label>
-                            <input type="text" class="form-control" id="custName" disabled>
-                        </div>
-
-                    </div>
-
-
-
-                    <!--                item selection-->
-
-                    <div class="row mt-3 mb-3">
-
-                        <h3 class="card-header-pills  mt-3 text-center" >Select Items</h3>
-
-                    </div>
-
-
-                    <div class="row mt-3 mb-3">
-
-                        <div class="col-md-6">
-                            <label for="code" class="form-label">Item Code :</label>
-                            <select name="" id="code" class="form-select" aria-label="Disabled select example">
-                                <option value="1" selected>select item code</option>
-                            </select>
-                        </div>
-                    </div>
-
-
-                    <div class="row mt-3 mb-3">
-                        <div class="col-md-6">
-                            <label for="description" class="form-label">Description :</label>
-                            <input type="text" class="form-control" id="description" disabled>
-                        </div>
-
-
-
-                    </div>
-
-
-                    <div class="row mt-3 mb-3">
-                        <div class="col-md-3">
-                            <label for="qty" class="form-label">Item Qty Av :</label>
-                            <input type="number" class="form-control" id="qty" disabled>
-                        </div>
-
-                    </div>
-
-
-                    <div class="row mt-3 mb-3">
-                        <div class="col-md-6">
-                            <label for="price" class="form-label">Item Price :</label>
-                            <input type="text" class="form-control" id="price" disabled>
-                        </div>
-
-                    </div>
-
-
-                    <div class="row mt-3 mb-3">
-                        <div class="col-md-3">
-                            <label for="getQty" class="form-label">Buy Qty :</label>
-                            <input type="number" class="form-control" id="getQty">
-                        </div>
-
-
-                    </div>
-
-
-
-
-                    <button type="submit" id="addItem" class="btn btn-primary">Add To Cart</button>
-                    <button type="submit" id="placeOrder" class="btn btn-primary">Place Ordder</button>
-
-
-
-
-
-
-
-
-
-
-                    <!--                cart table-->
-
-                    <div class="row mt-3 mb-3">
-
-                        <table class="table table-success table-striped mt-3">
-                            <thead>
-                            <tr>
-                                <th scope="col">Item ID</th>
-                                <th scope="col">Item Dese</th>
-                                <th scope="col"> Qty</th>
-                                <th  scope="col">Item Price</th>
-                                <th  scope="col">Total  Price</th>
-                                <th  scope="col">Action</th>
-                            </tr>
-                            </thead>
-                        </table>
-
-                    </div>
-
-
-
-                    <!--                Place Order-->
-
-                    <div class="row mt-3 mb-3">
-
-                        <h3 class="card-header-pills  mt-3 text-center" >Place Order</h3>
-
-                    </div>
-
-
-                    <div class="row mt-3 mb-3">
-
-                        <div class="row">
-                            <div class="col-4">
-                                <label for="total" class="form-label">Total :</label>
-                                <input type="text" class="form-control" id="total" disabled>
-                            </div>
-                            <div class="col-4">
-                                <label for="discount" class="form-label">Discount :</label>
-                                <input type="text" class="form-control" id="discount">
-                            </div>
-                            <div class="col-4">
-                                <label for="subTotal" class="form-label">Sub Total :</label>
-                                <input type="text" class="form-control" id="subTotal" disabled>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-
-                    <div class="row mt-3 mb-3">
-
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="cash" class="form-label">Cash :</label>
-                                <input type="text" class="form-control" id="cash">
-                            </div>
-
-                            <div class="col-6">
-                                <label for="balance" class="form-label">Balance :</label>
-                                <input type="text" class="form-control" id="balance" disabled>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-
-
-
-                    <div class="row">
-                        <div class="col">
-                            <button type="submit" id="purchase" class="btn btn-success mt-3 mb-3">Purchase</button>
-                        </div>
-                    </div>
-
-
                 </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="custId" class="form-label">Customer Id :</label>
+                        <select name="" id="custId" class="form-select" aria-label="Disabled select example">
+                            <option value="1" selected>select customer id</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="custName" class="form-label">Customer Name :</label>
+                        <input type="text" class="form-control" id="custName" disabled>
+                    </div>
+                </div>
+
+                <h3 class="card-header-pills  mt-5 mb-3 text-center" >Select Items</h3>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="code" class="form-label">Item Code :</label>
+                        <select name="" id="code" class="form-select" aria-label="Disabled select example">
+                            <option value="1" selected>select item code</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="description" class="form-label">Description :</label>
+                        <input type="text" class="form-control" id="description" disabled>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label for="qty" class="form-label">Item Qty :</label>
+                        <input type="number" class="form-control" id="qty" disabled>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="price" class="form-label">Item Price :</label>
+                        <input type="text" class="form-control" id="price" disabled>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="getQty" class="form-label">Get Qty :</label>
+                        <input type="number" class="form-control" id="getQty">
+                    </div>
+                </div>
+
+                <div class="mt-3 mb-5 justify-content-end align-items-end">
+                    <button type="submit" id="addItem" class="btn btn-primary">Add To Cart</button>
+                </div>
+
+                <table class="table table-hover table-bordered table-striped  mb-0">
+                    <thead>
+                    <tr>
+                        <th class=" ">Item Code</th>
+                        <th class=" ">Description</th>
+                        <th class=" ">Item Qty</th>
+                        <th class=" ">Item Price</th>
+                        <th class=" ">Order Qty</th>
+                        <th class=" ">Total</th>
+                        <th class=" ">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="cart-table-body"></tbody>
+                </table>
+
+
+                <h3 class="card-header-pills  mt-5 mb-3 text-center" >Place Order</h3>
+
+                <div class="row">
+                    <div class="col-4">
+                        <label for="total" class="form-label">Total :</label>
+                        <input type="text" class="form-control" id="total" disabled>
+                    </div>
+                    <div class="col-4">
+                        <label for="discount" class="form-label">Discount :</label>
+                        <input type="text" class="form-control" id="discount">
+                    </div>
+                    <div class="col-4">
+                        <label for="subTotal" class="form-label">Sub Total :</label>
+                        <input type="text" class="form-control" id="subTotal" disabled>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <label for="cash" class="form-label">Cash :</label>
+                        <input type="text" class="form-control" id="cash">
+                    </div>
+                    <div class="col-6">
+                        <label for="balance" class="form-label">Balance :</label>
+                        <input type="text" class="form-control" id="balance" disabled>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+
+                        <button type="submit" id="purchase" class="btn btn-success mt-3 mb-3">Purchase</button>
+                    </div>
+                </div>
+
             </div>
+
         </div>
 
 
