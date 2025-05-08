@@ -1,76 +1,132 @@
 import { customer_db } from "../db/db.js";
 import CustomerModel from "../model/customerModel.js";
 
-export function loadCustomer() {
-    $("table tbody").empty(); // Changed selector to target the table body
-
-    customer_db.forEach((item, index) => {
-        let data = `<tr>
-            <td>${item.customer_id}</td>
-            <td>${item.customer_name}</td>
-            <td>${item.customer_address}</td>
-            <td>${item.customer_contact}</td>         
-        </tr>`;
-        $("table tbody").append(data);
-    });
-}
+let selectedIndex = -1;
 
 $("#customer-save").click(function () {
-    let customer_id = $("#customer_id").val();
-    let customer_name = $("#customerName").val();
-    let customer_address = $("#customerAddress").val();
-    let customer_contact = $("#customerContact").val();
+    let customerId = $("#customer_id").val();
+    let customerName = $("#customerName").val();
+    let address = $("#customerAddress").val();
+    let number = $("#customerContact").val();
 
-    if (customer_id === '' || customer_name === '' || customer_address === '' || customer_contact === '') {
-        Swal.fire({
-            title: 'Error!',
-            text: 'Please fill all fields',
-            icon: 'error',
-            confirmButtonText: 'Ok'
-        });
+    if (customerId === '' || customerName === '' || address === '' || number === '') {
+        Swal.fire("Error", "Please fill all fields", "error");
     } else {
-        let customer_data = new CustomerModel(
-            customer_id,
-            customer_name,
-            customer_address,
-            customer_contact
-        );
-
+        const customer_data = new CustomerModel(customerId, customerName, address, number);
         customer_db.push(customer_data);
-        console.log(customer_db);
+        loadCustomerTableData();
 
-        loadCustomer();
-
-        // Close modal and clear form
         $('#customerModal').modal('hide');
         $('#customerModal form')[0].reset();
 
-        Swal.fire({
-            title: "Added Successfully!",
-            icon: "success",
-            draggable: true
-        });
+        Swal.fire("Success", "Customer Added Successfully", "success");
     }
 });
 
 
-let selectedIndex = -1;
-$('.cus-body').on('click', 'tr', function () {
+$('#Cup').click(function () {
+    if (selectedIndex === -1) {
+        Swal.fire("Error", "Please select a customer to update", "error");
+        return;
+    }
+
+    const selectedCustomer = customer_db[selectedIndex];
+    $('#customer_idU').val(selectedCustomer.customerId);
+    $('#customerNameU').val(selectedCustomer.customerName);
+    $('#customerAddressU').val(selectedCustomer.address);
+    $('#customerContactU').val(selectedCustomer.number);
+
+    $('#customerModalU').modal('show');
+});
+
+$('#customer-update').click(function () {
+
+    if (selectedIndex === -1) {
+        Swal.fire("Error", "Please select a customer to update", "error");
+        return;
+    }
+
+    let customerId = $("#customer_idU").val();
+    let customerName = $("#customerNameU").val();
+    let address = $("#customerAddressU").val();
+    let number = $("#customerContactU").val();
+
+    if (selectedIndex === -1) {
+        Swal.fire("Error", "Please select a customer to update", "error");
+        return;
+    }
+
+    const updatedCustomer = new CustomerModel(customerId, customerName, address, number);
+    customer_db[selectedIndex] = updatedCustomer;
+
+    loadCustomerTableData();
+    $('#customerModalU').modal('hide');
+    $('#customerModalU form')[0].reset();
+    selectedIndex = -1;
+
+    Swal.fire("Updated!", "Customer has been updated.", "success");
+});
+
+$('#customer-delete').click(function () {
+    if (selectedIndex === -1) {
+        Swal.fire("Error", "Please select a customer to delete", "error");
+        return;
+    }
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            customer_db.splice(selectedIndex, 1);
+            loadCustomerTableData();
+            clearForm();
+            selectedIndex = -1;
+            Swal.fire("Deleted!", "Customer has been deleted.", "success");
+        }
+    });
+});
+
+function loadCustomerTableData() {
+    $('#customer-tbody').empty();
+    customer_db.forEach((item, index) => {
+        let row = `<tr>
+            <td>${item.customerId}</td>
+            <td>${item.customerName}</td>
+            <td>${item.address}</td>
+            <td>${item.phoneNumber}</td>
+        </tr>`;
+        $('#customer-tbody').append(row);
+    });
+}
+
+$('#customer-tbody').on('click', 'tr', function () {
     selectedIndex = $(this).index();
-    let obj = customer_db[selectedIndex];
+    const customer = customer_db[selectedIndex];
 
-    let customerId = obj.customerId;
-    let customerName = obj.customerName;
-    let address = obj.address;
-    let phoneNumber = obj.phoneNumber;
+    $('#customer_idU').val(customer.customerId);
+    $('#customerNameU').val(customer.customerName);
+    $('#customerAddressU').val(customer.address);
+    $('#customerContactU').val(customer.phoneNumber);
+});
 
-    $('#id').val(customerId);
-    $('#name').val(customerName);
-    $('#address').val(address);
-    $('#number').val(phoneNumber);
-})
+function clearForm() {
+    $('#customer_id').val('');
+    $('#customerName').val('');
+    $('#customerAddress').val('');
+    $('#customerContact').val('');
 
+    $('#customer_idU').val('');
+    $('#customerNameU').val('');
+    $('#customerAddressU').val('');
+    $('#customerContactU').val('');
+}
 
 $('.btn-outline-success').on('click', function () {
-    $('#customerModal form')[0].reset();
+    clearForm();
 });
