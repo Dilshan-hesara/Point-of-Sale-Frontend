@@ -427,6 +427,9 @@
                         <th  scope="col">Item Price</th>
                     </tr>
                     </thead>
+                    <tbody id="item-tbody" >
+
+                    </tbody>
                 </table>
 
             </div>
@@ -463,7 +466,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button id="saveUpdateItemBtn" type="button" class="btn btn-success">Save Item</button>
+                    <button id="saveAddItemBtn" type="button" class="btn btn-success">Save Item</button>
                 </div>
             </div>
         </div>
@@ -717,6 +720,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script type="module" src="controller/CustomerController.js"></script>
+<script type="module" src="controller/ItemController.js"></script>
 <!--add single page-->
 <script>
     $("#Dashboard-content").css("display", "block");
