@@ -3,6 +3,10 @@ import ItemModel from "../model/itemModel.js";
 
 let selectedIndex = -1;
 
+$('#Ia').click(function () {
+    $('#itemModal').modal('show');
+
+});
 
 $("#saveAddItemBtn").click(function () {
     let item_code = $("#item_code").val();
@@ -16,15 +20,35 @@ $("#saveAddItemBtn").click(function () {
         const item_data = new ItemModel(item_code, item_description, item_qty, item_price);
         item_db.push(item_data);
         loadItemTableData();
+        loadItemCMB();
 
         $('#itemModal').modal('hide');
         $('#itemModal form')[0].reset();
 
-        Swal.fire("Success", "Item Added Successfully", "success");
+        $('#itemCode').append($('<option>').text(item_code));
+        Swal.fire({
+            title: "Added Successfully!",
+            icon: "success",
+            draggable: true
+
+        })
+
+        // Swal.fire("Success", "Item Added Successfully", "success");
     }
 });
 
-
+function loadItemCMB() {
+    $('#itemCode').empty();
+    $('#itemCode').append(`<option>Select Item ID</option>`);
+    item_db.forEach(item => {
+        $('#itemCode').append(
+            $('<option>', {
+                value: item.itemCode,
+                text: item.itemCode
+            })
+        );
+    });
+}
 function loadItemTableData() {
     $('#item-tbody').empty();
     item_db.forEach((item, index) => {
