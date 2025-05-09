@@ -33,6 +33,7 @@ $(document).ready(function() {
     console.log(" DB:", item_db);
     generateOrderId();
     setCurrentDate();
+    clearOrderForm();
 });
 
 
@@ -58,7 +59,6 @@ function generateOrderId() {
 
 const availableQty = parseInt($('#qty').val());
 
-// Add to cart button handler
 $('#addtocart').click(function() {
     const code = $('#itemCode').val();
     const description = $('#description').val();
@@ -249,9 +249,6 @@ const loadOrderDetailsData = () => {
                      <td>${subTotal}</td>
                      <td>${discount}</td>
                      <td>${finalTotal}</td>
-                     
-  
-                     
                  </tr>`
         $('#orderView-table').append(data);
     })
