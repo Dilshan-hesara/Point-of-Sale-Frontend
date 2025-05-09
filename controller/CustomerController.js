@@ -1,8 +1,15 @@
 import { customer_db } from "../db/db.js";
 import CustomerModel from "../model/customerModel.js";
 
+
+
 let selectedIndex = -1;
 
+$("#add-customer").click(function (){
+
+    $('#customerModal').modal('show');
+
+})
 $("#customer-save").click(function () {
     let customerId = $("#customer_id").val();
     let customerName = $("#customerName").val();
@@ -15,13 +22,33 @@ $("#customer-save").click(function () {
         const customer_data = new CustomerModel(customerId, customerName, address, number);
         customer_db.push(customer_data);
         loadCustomerTableData();
+        loadCustomerDropdown();
+        console.log(customer_db);
 
         $('#customerModal').modal('hide');
         $('#customerModal form')[0].reset();
+        $('#selectCustomerId').append($('<option>').text(customerId));
+        Swal.fire({
+            title: "Added Successfully!",
+            icon: "success",
+            draggable: true
 
-        Swal.fire("Success", "Customer Added Successfully", "success");
+        })
+        // Swal.fire("Success", "Customer Added Successfully", "success");
     }
 });
+function loadCustomerDropdown() {
+    $('#selectCustomerId').empty();
+    $('#selectCustomerId').append(`<option>Select Customer ID</option>`);
+    customer_db.forEach(customer => {
+        $('#selectCustomerId').append(
+            $('<option>', {
+                value: customer.customerId,
+                text: customer.customerId,
+            })
+        );
+    });
+}
 
 
 $('#Cup').click(function () {
@@ -86,6 +113,7 @@ $('#customer-delete').click(function () {
             customer_db.splice(selectedIndex, 1);
             loadCustomerTableData();
             clearForm();
+            loadCustomerDropdown();
             selectedIndex = -1;
             Swal.fire("Deleted!", "Customer has been deleted.", "success");
         }
