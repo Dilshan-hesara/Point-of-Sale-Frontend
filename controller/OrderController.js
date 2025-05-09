@@ -195,6 +195,7 @@ $('#placeOrder').click(function() {
         // 5. Clear UI and reset form
         clearOrderForm();
         generateOrderId();
+        loadOrderDetailsData();
     });
 });
 
@@ -222,3 +223,35 @@ function clearOrderForm() {
 $('#discount, #cash').on('input', function() {
     calculateTotal();
 });
+
+
+const loadOrderDetailsData = () => {
+    $('#orderView-table').empty();
+    order_details_db.map((item, index) =>{
+        let orderId = item.orderId;
+        let date = item.date;
+        let customerName = item.cusName;
+        let itemName = item.itemName;
+        let price = item.price;
+        let OrQty = item.orderQty;
+        let subTotal = item.subTotal;
+        let discount = item.discount;
+        let finalTotal = item.finalTotal;
+
+        let data = `<tr>
+                     <td>${orderId}</td>
+                     <td>${date}</td>
+                     <td>${customerName}</td>
+                     <td>${itemName}</td>
+                     <td>${price}</td>
+                     <td>${OrQty}</td>
+                     <td>${subTotal}</td>
+                     <td>${discount}</td>
+                     <td>${finalTotal}</td>
+                     
+  
+                     
+                 </tr>`
+        $('#orderView-table').append(data);
+    })
+}
