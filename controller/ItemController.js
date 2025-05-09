@@ -43,8 +43,8 @@ function loadItemCMB() {
     item_db.forEach(item => {
         $('#itemCode').append(
             $('<option>', {
-                value: item.itemCode,
-                text: item.itemCode
+                value: item.item_code,
+                text: item.item_code
             })
         );
     });
