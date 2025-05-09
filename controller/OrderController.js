@@ -147,10 +147,10 @@ $('#placeOrder').click(function() {
     const cash = parseFloat($('#cash').val()) || 0;
     const balance = parseFloat($('#balance').val()) || 0;
 
-    if (!orderId || !date || !customerId || cart.length === 0) {
-        Swal.fire("Error", "Please fill all required fields and add items to cart", "error");
-        return;
-    }
+    // if (!orderId || !date || !customerId || cart.length === 0) {
+    //     Swal.fire("Error", "Please fill all required fields and add items to cart", "error");
+    //     return;
+    // }
 
     if (order_db.some(order => order.orderId === orderId)) {
         Swal.fire("Error", "Order ID already exists", "error");
@@ -192,10 +192,11 @@ $('#placeOrder').click(function() {
         icon: "success",
         confirmButtonText: "OK"
     }).then(() => {
-        // 5. Clear UI and reset form
+
         clearOrderForm();
         generateOrderId();
         loadOrderDetailsData();
+        setCurrentDate();
     });
 });
 
