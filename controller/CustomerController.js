@@ -79,7 +79,7 @@ $('#Cup').click(function () {
     $('#customer_idU').val(selectedCustomer.customerId);
     $('#customerNameU').val(selectedCustomer.customerName);
     $('#customerAddressU').val(selectedCustomer.address);
-    $('#customerContactU').val(selectedCustomer.number);
+    $('#customerContactU').val(selectedCustomer.phoneNumber);
 
     $('#customerModalU').modal('show');
 });
