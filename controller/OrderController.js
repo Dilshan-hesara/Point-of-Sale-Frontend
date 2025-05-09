@@ -3,61 +3,48 @@ import { customer_db, item_db, order_db, order_details_db } from "../db/db.js";
 import OrderModel from "../model/OrderModel.js";
 import OrderDetailModel from "../model/OrderDetailModel.js";
 
-// $('#selectCustomerId').change(function () {
-//     var selectedValue = $(this).val();
-//     customer_db.map(function (Customer) {
-//         if (selectedValue.toString() === Customer.customerId.toString()) {
-//             $('#cusName').val(Customer.customerName);
-//
-//         }
-//     });
-// });
-
+$('#selectCustomerId').change(function () {
+    var selectedValue = $(this).val();
+    customer_db.map(function (Customer) {
+        if (selectedValue.toString() === Customer.customerId.toString()) {
+            $('#custName').val(Customer.customerName);
+        }
+    });
+});
 
 //
 // let cart = [];
 //
 // Initialize the form when page loads
 $(document).ready(function() {
-    loadCustomerOptions();
-    console.log("Customer DB:", customer_db);
+    // loadCustomerOptions();
+    // console.log("Customer DB:", customer_db);
 
     // loadItemOptions();
-    // generateOrderId();
-    // setCurrentDate();
+    generateOrderId();
+    setCurrentDate();
 });
 //
-// function setCurrentDate() {
-//     const today = new Date().toISOString().split('T')[0];
-//     $('#orderDate').val(today);
-// }
-//
-// function generateOrderId() {
-//     if (order_db.length === 0) {
-//         $('#orderId').val('ORD001');
-//     } else {
-//         const lastId = order_db[order_db.length - 1].orderId;
-//         const num = parseInt(lastId.substring(3)) + 1;
-//         $('#orderId').val('ORD' + num.toString().padStart(3, '0'));
-//     }
-// }
-//
-function loadCustomerOptions() {
-    console.log("Customer DB:", customer_db);
-
-    const select = $('#selectCustomerId');
-    select.empty();
-
-    // Add default option
-    select.append('<option value="">Select Customer</option>');
-
-    // Use map to generate all options, then join and append them
-    const options = customer_db.map(customer =>
-        `<option value="${customer.customerId}">${customer.customerId} - ${customer.customerName}</option>`
-    ).join('');
-
-    select.append(options);
+function setCurrentDate() {
+    const today = new Date().toISOString().split('T')[0];
+    $('#orderDate').val(today);
 }
+
+function generateOrderId() {
+    if (order_db.length === 0) {
+        $('#orderId').val('ORD001');
+    } else {
+        const lastId = order_db[order_db.length - 1].orderId;
+        const num = parseInt(lastId.substring(3)) + 1;
+        $('#orderId').val('ORD' + num.toString().padStart(3, '0'));
+    }
+}
+
+// function loadCustomerOptions() {
+
+// }
+
+
 
 //
 // function loadItemOptions() {
