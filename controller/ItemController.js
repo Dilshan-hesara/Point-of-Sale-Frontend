@@ -15,7 +15,7 @@ $("#saveAddItemBtn").click(function () {
     } else {
         const item_data = new ItemModel(item_code, item_description, item_qty, item_price);
         item_db.push(item_data);
-        loadCustomerTableData();
+        loadItemTableData();
 
         $('#itemModal').modal('hide');
         $('#itemModal form')[0].reset();
@@ -25,7 +25,7 @@ $("#saveAddItemBtn").click(function () {
 });
 
 
-function loadCustomerTableData() {
+function loadItemTableData() {
     $('#item-tbody').empty();
     item_db.forEach((item, index) => {
         let row = `<tr>
@@ -56,7 +56,7 @@ $('#Iup').click(function () {
 $('#UpdateItemBtnU').click(function () {
 
     if (selectedIndex === -1) {
-        Swal.fire("Error", "Please select a customer to update", "error");
+        Swal.fire("Error", "Please select a Item to update", "error");
         return;
     }
 
@@ -66,19 +66,19 @@ $('#UpdateItemBtnU').click(function () {
     let price= $("#itemPriceU").val();
 
     if (selectedIndex === -1) {
-        Swal.fire("Error", "Please select a customer to update", "error");
+        Swal.fire("Error", "Please select a Item to update", "error");
         return;
     }
 
     const updatedItem = new ItemModel(ItemId,dese, qty, price);
     item_db[selectedIndex] = updatedItem;
 
-    loadCustomerTableData();
+    loadItemTableData();
     $('#itemModalU').modal('hide');
     $('#itemModalU form')[0].reset();
     selectedIndex = -1;
 
-    Swal.fire("Updated!", "Customer has been updated.", "success");
+    Swal.fire("Updated!", "Item has been updated.", "success");
 });
 
 $('#item-tbody').on('click', 'tr', function () {
@@ -89,4 +89,30 @@ $('#item-tbody').on('click', 'tr', function () {
     $('#itemDescriptionU').val(item.item_description);
     $('#itemQtyU').val(item.item_qty);
     $('#itemPriceU').val(item.item_price);
+});
+
+
+$('#item-delete').click(function () {
+    if (selectedIndex === -1) {
+        Swal.fire("Error", "Please select a Item to delete", "error");
+        return;
+    }
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+
+    }).then((result) => {
+        if (result.isConfirmed) {
+            item_db.splice(selectedIndex, 1);
+            loadItemTableData();
+            selectedIndex = -1;
+            Swal.fire("Deleted!", "Item has been deleted.", "success");
+        }
+    });
 });
