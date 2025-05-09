@@ -1,13 +1,13 @@
 export default  class OrderDetailModel{
-     constructor(OrderId,Date,cusName,ItemName, Price,OrderQty,SubTotal,DiscountRate,Discount,FinalTotal) {
-         this._OrderId = OrderId;
-         this._Date = Date;
-         this._cusName = cusName;
-         this._ItemName = ItemName;
-         this._Price = Price;
-         this._OrderQty = OrderQty;
-         this._SubTotal = SubTotal;
-         this._Discount = Discount;
-         this._FinalTotal = FinalTotal;
+     constructor(orderId,Date,cusName,ItemName, Price,OrderQty,SubTotal,Discount,finalTotal) {
+         this.orderId = orderId;
+         this.date = Date;
+         this.cusName = cusName;
+         this.itemName = ItemName;
+         this.price = Price;
+         this.orderQty = OrderQty;
+         this.subTotal = SubTotal;
+         this.discount = Discount;
+         this.finalTotal = finalTotal;
      }
 }
