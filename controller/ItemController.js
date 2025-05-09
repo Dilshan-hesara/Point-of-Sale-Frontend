@@ -158,6 +158,9 @@ $('#item-delete').click(function () {
             loadItemTableData();
             selectedIndex = -1;
             Swal.fire("Deleted!", "Item has been deleted.", "success");
+            loadItemCMB();
+
         }
     });
+
 });
