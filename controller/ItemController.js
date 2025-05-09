@@ -1,5 +1,7 @@
 import {customer_db, item_db} from "../db/db.js";
-import ItemModel from "../model/ItemModel.js";
+import ItemModel from "../model/itemModel.js";
+
+let selectedIndex = -1;
 
 
 $("#saveAddItemBtn").click(function () {
@@ -15,8 +17,8 @@ $("#saveAddItemBtn").click(function () {
         item_db.push(item_data);
         loadCustomerTableData();
 
-        $('#ItemModal').modal('hide');
-        $('#ItemModal form')[0].reset();
+        $('#itemModal').modal('hide');
+        $('#itemModal form')[0].reset();
 
         Swal.fire("Success", "Item Added Successfully", "success");
     }
@@ -35,3 +37,56 @@ function loadCustomerTableData() {
         $('#item-tbody').append(row);
     });
 }
+
+$('#Iup').click(function () {
+    if (selectedIndex === -1) {
+        Swal.fire("Error", "Please select a Item to update", "error");
+        return;
+    }
+
+    const selectedItem = item_db[selectedIndex];
+    $('#item_codeU').val(selectedItem.item_code);
+    $('#itemDescriptionU').val(selectedItem.item_description);
+    $('#itemQtyU').val(selectedItem.item_qty);
+    $('#itemPriceU').val(selectedItem.item_price);
+
+    $('#itemModalU').modal('show');
+});
+
+$('#UpdateItemBtnU').click(function () {
+
+    if (selectedIndex === -1) {
+        Swal.fire("Error", "Please select a customer to update", "error");
+        return;
+    }
+
+    let ItemId = $("#item_codeU").val();
+    let dese = $("#itemDescriptionU").val();
+    let qty = $("#itemQtyU").val();
+    let price= $("#itemPriceU").val();
+
+    if (selectedIndex === -1) {
+        Swal.fire("Error", "Please select a customer to update", "error");
+        return;
+    }
+
+    const updatedItem = new ItemModel(ItemId,dese, qty, price);
+    item_db[selectedIndex] = updatedItem;
+
+    loadCustomerTableData();
+    $('#itemModalU').modal('hide');
+    $('#itemModalU form')[0].reset();
+    selectedIndex = -1;
+
+    Swal.fire("Updated!", "Customer has been updated.", "success");
+});
+
+$('#item-tbody').on('click', 'tr', function () {
+    selectedIndex = $(this).index();
+    const item = item_db[selectedIndex];
+
+    $('#item_codeU').val(item.item_code);
+    $('#itemDescriptionU').val(item.item_description);
+    $('#itemQtyU').val(item.item_qty);
+    $('#itemPriceU').val(item.item_price);
+});
