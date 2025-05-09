@@ -1,7 +1,25 @@
-import {customer_db, item_db} from "../db/db.js";
+import { item_db} from "../db/db.js";
 import ItemModel from "../model/itemModel.js";
 
 let selectedIndex = -1;
+
+
+$(document).ready(function() {
+
+    generateItemId();
+});
+
+
+function generateItemId() {
+    if (item_db.length === 0) {
+        $('#item_code').val('I001');
+    } else {
+        const lastId = item_db[item_db.length - 1].item_code;
+        const num = parseInt(lastId.substring(3)) + 1;
+        $('#item_code').val('I' + num.toString().padStart(3, '0'));
+    }
+}
+
 
 $('#Ia').click(function () {
     $('#itemModal').modal('show');
@@ -32,6 +50,9 @@ $("#saveAddItemBtn").click(function () {
             draggable: true
 
         })
+
+        generateItemId();
+
 
         // Swal.fire("Success", "Item Added Successfully", "success");
     }
