@@ -197,6 +197,7 @@ $('#placeOrder').click(function() {
         generateOrderId();
         loadOrderDetailsData();
         setCurrentDate();
+        loadDashboardCounts();
     });
 });
 
@@ -252,4 +253,11 @@ const loadOrderDetailsData = () => {
                  </tr>`
         $('#orderView-table').append(data);
     })
+}
+
+
+function loadDashboardCounts() {
+    $('#customerCount').text(customer_db.length);
+    $('#itemsCount').text(item_db.length);
+    $('#ordersCount').text(order_db.length);
 }

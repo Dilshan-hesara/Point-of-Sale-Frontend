@@ -1,4 +1,4 @@
-import {customer_db} from "../db/db.js";
+import {customer_db, item_db, order_db} from "../db/db.js";
 import CustomerModel from "../model/customerModel.js";
 
 
@@ -52,9 +52,19 @@ $("#customer-save").click(function () {
 
         })
         generateCustomerId();
+        loadDashboardCounts();
+
         // Swal.fire("Success", "Customer Added Successfully", "success");
     }
 });
+
+function loadDashboardCounts() {
+    $('#customerCount').text(customer_db.length);
+    $('#itemsCount').text(item_db.length);
+    $('#ordersCount').text(order_db.length);
+}
+
+
 function loadCustomerDropdown() {
     $('#selectCustomerId').empty();
     $('#selectCustomerId').append(`<option>Select Customer ID</option>`);
@@ -134,6 +144,7 @@ $('#customer-delete').click(function () {
             loadCustomerDropdown();
             selectedIndex = -1;
             Swal.fire("Deleted!", "Customer has been deleted.", "success");
+            loadDashboardCounts();
         }
     });
 });

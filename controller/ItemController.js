@@ -1,4 +1,4 @@
-import { item_db} from "../db/db.js";
+import {customer_db, item_db, order_db} from "../db/db.js";
 import ItemModel from "../model/itemModel.js";
 
 let selectedIndex = -1;
@@ -52,6 +52,7 @@ $("#saveAddItemBtn").click(function () {
         })
 
         generateItemId();
+        loadDashboardCounts();
 
 
         // Swal.fire("Success", "Item Added Successfully", "success");
@@ -159,8 +160,16 @@ $('#item-delete').click(function () {
             selectedIndex = -1;
             Swal.fire("Deleted!", "Item has been deleted.", "success");
             loadItemCMB();
+            loadDashboardCounts();
 
         }
     });
 
 });
+
+
+function loadDashboardCounts() {
+    $('#customerCount').text(customer_db.length);
+    $('#itemsCount').text(item_db.length);
+    $('#ordersCount').text(order_db.length);
+}
