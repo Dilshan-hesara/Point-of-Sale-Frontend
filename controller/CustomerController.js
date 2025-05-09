@@ -1,5 +1,22 @@
-import { customer_db } from "../db/db.js";
+import {customer_db} from "../db/db.js";
 import CustomerModel from "../model/customerModel.js";
+
+
+$(document).ready(function() {
+
+    generateCustomerId();
+
+});
+
+function generateCustomerId() {
+    if (customer_db.length === 0) {
+        $('#customer_id').val('C001');
+    } else {
+        const lastId = customer_db[customer_db.length - 1].customerId;
+        const num = parseInt(lastId.substring(3)) + 1;
+        $('#customer_id').val('C' + num.toString().padStart(3, '0'));
+    }
+}
 
 
 
@@ -34,6 +51,7 @@ $("#customer-save").click(function () {
             draggable: true
 
         })
+        generateCustomerId();
         // Swal.fire("Success", "Customer Added Successfully", "success");
     }
 });
