@@ -33,9 +33,33 @@ $("#customer-save").click(function () {
     let address = $("#customerAddress").val();
     let number = $("#customerContact").val();
 
+
     if (customerId === '' || customerName === '' || address === '' || number === '') {
         Swal.fire("Error", "Please fill all fields", "error");
-    } else {
+        return false;
+    }
+
+
+    if (!/^[A-Za-z\s]+$/.test(customerName)) {
+        Swal.fire("Error", "Name must contain only letters", "error");
+        return false;
+    } else if (customerName.length < 2) {
+        Swal.fire("Error", "Name must be at least 2 characters", "error");
+        return false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(address)) {
+        Swal.fire("Error", "Please enter a valid email ", "error");
+        return false;
+    }
+
+    if (!/^0\d{9}$/.test(number)) {
+        Swal.fire("Error", "Please enter a valid Numeber ", "error");
+        return false;
+    }
+
+    else {
         const customer_data = new CustomerModel(customerId, customerName, address, number);
         customer_db.push(customer_data);
         loadCustomerTableData();
@@ -110,6 +134,28 @@ $('#customer-update').click(function () {
         Swal.fire("Error", "Please select a customer to update", "error");
         return;
     }
+
+
+
+    if (!/^[A-Za-z\s]+$/.test(customerName)) {
+        Swal.fire("Error", "Name must contain only letters", "error");
+        return false;
+    } else if (customerName.length < 2) {
+        Swal.fire("Error", "Name must be at least 2 characters", "error");
+        return false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(address)) {
+        Swal.fire("Error", "Please enter a valid email ", "error");
+        return false;
+    }
+
+    if (!/^0\d{9}$/.test(number)) {
+        Swal.fire("Error", "Please enter a valid Numeber ", "error");
+        return false;
+    }
+
 
     const updatedCustomer = new CustomerModel(customerId, customerName, address, number);
     customer_db[selectedIndex] = updatedCustomer;
