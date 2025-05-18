@@ -1,7 +1,8 @@
 import { customer_db, item_db, order_db, order_details_db } from "../db/db.js";
 import OrderModel from "../model/OrderModel.js";
 import OrderDetailModel from "../model/OrderDetailModel.js";
-
+// import {loadItemTableData} from "./ItemController";
+import ItemModel from "../model/itemModel.js";
 $('#selectCustomerId').change(function () {
     var selectedValue = $(this).val();
     customer_db.map(function (Customer) {
@@ -24,6 +25,18 @@ $('#itemCode').change(function () {
     })
 })
 
+function loadItemTableData() {
+    $('#item-tbody').empty();
+    item_db.forEach((item, index) => {
+        let row = `<tr>
+            <td>${item.item_code}</td>
+            <td>${item.item_description}</td>
+            <td>${item.item_qty}</td>
+            <td>${item.item_price}</td>
+        </tr>`;
+        $('#item-tbody').append(row);
+    });
+}
 
 //
 let cart = [];
@@ -137,7 +150,7 @@ function calculateTotal() {
     const total = cart.reduce((sum, item) => sum + item.total, 0);
     $('#total').val(total.toFixed(2));
 
-    tot ==total;
+    // tot ==total;
     const discount = parseFloat($('#discount').val()) || 0;
     const finalTotal = total - discount;
     $('#subTotal').val(finalTotal.toFixed(2));
@@ -185,7 +198,7 @@ $('#placeOrder').click(function() {
         return;
     }
 
-    const newOrder = new OrderModel(orderId, date, customerId, customerName, subTotal, discount, finalTotal, cash, balance);
+    const newOrder = new OrderModel(orderId, date, customerId );
     order_db.push(newOrder);
 
     cart.forEach(item => {
@@ -193,21 +206,48 @@ $('#placeOrder').click(function() {
             orderId,
             date,
             customerName,
-            item.code,
             item.description,
             item.price,
             item.orderQty,
             item.total,
             discount,
-            finalTotal
+            finalTotal,
         );
         order_details_db.push(detail);
+        console.log("========== Order Summary ==========");
+        console.log("Order ID     :", orderId);
+        console.log("Date         :", date);
+        console.log("Customer Name:", customerName);
+        console.log("-----------------------------------");
+
+        let serial = 1;
+        cart.forEach(item => {
+            console.log(`Item ${serial++}`);
+            console.log("  Code       :", item.code);
+            console.log("  Description:", item.description);
+            console.log("  Price      :", item.price.toFixed(2));
+            console.log("  Quantity   :", item.orderQty);
+            console.log("  Total      :", item.total.toFixed(2));
+            console.log("-----------------------------------");
+        });
+
+        console.log("Sub Total :", cart.reduce((sum, item) => sum + item.total, 0).toFixed(2));
+        console.log("Discount  :", discount + "%");
+        console.log("Final Total:", finalTotal.toFixed(2));
+        console.log("===================================");
 
         const dbItem = item_db.find(i => i.item_code === item.code);
         if (dbItem) {
             dbItem.item_qty -= item.orderQty;
         }
+
+        console.log("📦 Current item_db:", item_db);
+
+        console.log("ORDE DETAIL ", order_details_db)
+        loadItemTableData();
+
     });
+
 
     Swal.fire({
         title: "Success!",
@@ -220,7 +260,6 @@ $('#placeOrder').click(function() {
         loadOrderDetailsData();
         setCurrentDate();
         loadDashboardCounts();
-        loadItemTableData();
     });
 });
 
@@ -282,12 +321,12 @@ const loadOrderDetailsData = () => {
         let orderId = item.orderId;
         let date = item.date;
         let customerName = item.cusName;
-        let itemName = item.itemName;
-        let price = item.price;
-        let OrQty = item.orderQty;
-        let subTotal = item.subTotal;
-        let discount = item.discount;
-        let finalTotal = item.finalTotal;
+        let itemName = item.price;
+        let price = item.orderQty;
+        let OrQty = item.subTotal;
+        let subTotal = item.discount;
+        let discount = item.finalTotal;
+        let finalTotal = item.itemName;
 
         let data = `<tr>
                      <td>${orderId}</td>
@@ -310,3 +349,8 @@ function loadDashboardCounts() {
     $('#itemsCount').text(item_db.length);
     $('#ordersCount').text(order_db.length);
 }
+
+
+
+///////////////////////////////////////////
+
