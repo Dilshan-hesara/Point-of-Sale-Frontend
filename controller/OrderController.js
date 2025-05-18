@@ -77,13 +77,7 @@ $('#addtocart').click(function() {
         return;
     }
 
-    // if (getQty <= 0 || getQty > availableQty) {
-    //     Swal.fire("Error", "Invalid quantity", "error");
-    //     return;
-    // }
-    // let availableQty =parseInt($('#qty').val()); // Or any source
 
-  
 
     if (getQty <= 0 || getQty >availableQty) {
         Swal.fire("Error", "Invalid quantity", "error");
