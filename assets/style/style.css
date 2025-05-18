@@ -1,0 +1,43 @@
+body{
+    background-color: #e6f2ff;
+}
+
+.navbar {
+    background-color: #1a1a33;
+}
+.nav-link {
+    color: #f3f2f2 !important;
+}
+
+.nav-link:hover {
+    color: #f3f2f2 !important;
+        transform: translateY(-2px);
+
+}
+
+
+.table thead th {
+    background-color:#0F4C75FF;
+    color: #f3f2f2;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(236, 236, 236, 0.7);
+}
+
+.btn-success {
+    background-color:#28A745FF;
+    border-color: #28A745FF;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #00B4D8FF;
+    box-shadow: 0 0 0 0.2rem rgba(0, 180, 216, 0.25);
+}
+
+
+.btn-outline-primary:hover {
+    background-color:#00838D;
+    color: white;
+}
+
+
