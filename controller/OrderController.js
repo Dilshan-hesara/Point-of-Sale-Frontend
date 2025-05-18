@@ -19,6 +19,7 @@ $('#itemCode').change(function () {
             $('#price').val(Item.item_price);
             $('#qty').val(Item.item_qty);
 
+            const availableQty = parseInt($('#qty').val());
         }
     })
 })
@@ -69,16 +70,26 @@ $('#addtocart').click(function() {
     const description = $('#description').val();
     const price = parseFloat($('#price').val());
     const getQty = parseInt($('#getQty').val());
+    const customer = $('#custName').val();
 
-    if (!code || !description || !price || !getQty) {
-        Swal.fire("Error", "Please select an item and enter quantity", "error");
+    if (!code || !description || !price || !customer || !getQty    ){
+        Swal.fire("Error", "Please select an item & customer & enter quantity", "error");
         return;
     }
 
-    if (getQty <= 0 || getQty > availableQty) {
+    // if (getQty <= 0 || getQty > availableQty) {
+    //     Swal.fire("Error", "Invalid quantity", "error");
+    //     return;
+    // }
+    // let availableQty =parseInt($('#qty').val()); // Or any source
+
+  
+
+    if (getQty <= 0 || getQty >availableQty) {
         Swal.fire("Error", "Invalid quantity", "error");
         return;
     }
+
 
     const total = price * getQty;
 
@@ -207,7 +218,7 @@ $('#placeOrder').click(function() {
 
     Swal.fire({
         title: "Success!",
-        text: `Order placed successfully! Balance: ${balance.toFixed(2)}`,
+        text: `Order placed successfully! `,
         icon: "success",
         confirmButtonText: "OK"
     }).then(() => {
