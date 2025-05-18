@@ -145,6 +145,7 @@ window.removeItem = function(index) {
     renderCartTable();
     calculateTotal();
 };
+let finalTotal = "";
 
 function calculateTotal() {
     const total = cart.reduce((sum, item) => sum + item.total, 0);
@@ -152,15 +153,19 @@ function calculateTotal() {
 
     // tot ==total;
     const discount = parseFloat($('#discount').val()) || 0;
-    const finalTotal = total - discount;
-    $('#subTotal').val(finalTotal.toFixed(2));
+
+    let discountAmount = total * discount / 100;
+
+    const finalTota = total - discountAmount;
+
+    finalTotal = finalTota;
+    $('#subTotal').val(finalTota.toFixed(2));
 
     const cash = parseFloat($('#cash').val()) || 0;
     if (cash > 0) {
-        $('#balance').val((cash - finalTotal).toFixed(2));
+        $('#balance').val((cash - finalTota).toFixed(2));
     }
 }
-
 
 
 $('#placeOrder').click(function() {
@@ -189,9 +194,7 @@ $('#placeOrder').click(function() {
     }
 
 
-    const subTotal = cart.reduce((sum, item) => sum + item.total, 0);
-    const finalTotal = subTotal - discount;
-    const balance = cash - finalTotal;
+
 
     if (cash < finalTotal) {
         Swal.fire("Error", `Insufficient cash. Balance required: ${finalTotal - cash}`, "error");
@@ -336,7 +339,7 @@ const loadOrderDetailsData = () => {
                      <td>${price}</td>
                      <td>${OrQty}</td>
                      <td>${subTotal}</td>
-                     <td>${discount}</td>
+                     <td>${discount}%</td>
                      <td>${finalTotal}</td>
                  </tr>`
         $('#orderView-table').append(data);
