@@ -321,12 +321,12 @@ const loadOrderDetailsData = () => {
         let orderId = item.orderId;
         let date = item.date;
         let customerName = item.cusName;
-        let itemName = item.price;
-        let price = item.orderQty;
-        let OrQty = item.subTotal;
-        let subTotal = item.discount;
-        let discount = item.finalTotal;
-        let finalTotal = item.itemName;
+        let itemName = item.itemName;
+        let price = item.price;
+        let OrQty = item. orderQty;
+        let subTotal = item.subTotal;
+        let discount = item.discount;
+        let finalTotal = item.finalTotal;
 
         let data = `<tr>
                      <td>${orderId}</td>
