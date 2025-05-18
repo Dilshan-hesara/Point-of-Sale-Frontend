@@ -217,27 +217,6 @@ $('#placeOrder').click(function() {
             finalTotal,
         );
         order_details_db.push(detail);
-        console.log("========== Order Summary ==========");
-        console.log("Order ID     :", orderId);
-        console.log("Date         :", date);
-        console.log("Customer Name:", customerName);
-        console.log("-----------------------------------");
-
-        let serial = 1;
-        cart.forEach(item => {
-            console.log(`Item ${serial++}`);
-            console.log("  Code       :", item.code);
-            console.log("  Description:", item.description);
-            console.log("  Price      :", item.price.toFixed(2));
-            console.log("  Quantity   :", item.orderQty);
-            console.log("  Total      :", item.total.toFixed(2));
-            console.log("-----------------------------------");
-        });
-
-        console.log("Sub Total :", cart.reduce((sum, item) => sum + item.total, 0).toFixed(2));
-        console.log("Discount  :", discount + "%");
-        console.log("Final Total:", finalTotal.toFixed(2));
-        console.log("===================================");
 
         const dbItem = item_db.find(i => i.item_code === item.code);
         if (dbItem) {

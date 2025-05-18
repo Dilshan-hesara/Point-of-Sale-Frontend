@@ -34,7 +34,24 @@ $("#saveAddItemBtn").click(function () {
 
     if (item_code === '' || item_description === '' || item_qty === '' || item_price === '') {
         Swal.fire("Error", "Please fill all fields", "error");
-    } else {
+    }
+
+
+    if (!/^[A-Za-z\s.,'-]{3,}$/.test(item_description)) {
+        Swal.fire("Error", "Description must be  characters", "error");
+        return false;
+    }
+
+    if (!/^[1-9]\d*$/.test(item_qty)) {
+        Swal.fire("Error", "Quantity must be a positive whole number", "error");
+        return false;
+    }
+
+    if (!/^\d+(\.\d{1,2})?$/.test(item_price)) {
+        Swal.fire("Error", "Price must be a positive number ", "error");
+        return false;
+    }
+    else {
         const item_data = new ItemModel(item_code, item_description, item_qty, item_price);
         item_db.push(item_data);
         loadItemTableData();
@@ -71,7 +88,7 @@ function loadItemCMB() {
         );
     });
 }
-function loadItemTableData() {
+ function loadItemTableData() {
     $('#item-tbody').empty();
     item_db.forEach((item, index) => {
         let row = `<tr>
@@ -114,6 +131,22 @@ $('#UpdateItemBtnU').click(function () {
     if (selectedIndex === -1) {
         Swal.fire("Error", "Please select a Item to update", "error");
         return;
+    }
+
+
+    if (!/^[A-Za-z\s.,'-]{3,}$/.test(dese)) {
+        Swal.fire("Error", "Description must be  characters", "error");
+        return false;
+    }
+
+    if (!/^[1-9]\d*$/.test(qty)) {
+        Swal.fire("Error", "Quantity must be a positive whole number", "error");
+        return false;
+    }
+
+    if (!/^\d+(\.\d{1,2})?$/.test(price)) {
+        Swal.fire("Error", "Price must be a positive number ", "error");
+        return false;
     }
 
     const updatedItem = new ItemModel(ItemId,dese, qty, price);
