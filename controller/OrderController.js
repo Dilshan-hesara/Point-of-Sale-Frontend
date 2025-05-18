@@ -78,7 +78,6 @@ $('#addtocart').click(function() {
     }
 
 
-
     if (getQty <= 0 || getQty >availableQty) {
         Swal.fire("Error", "Invalid quantity", "error");
         return;
