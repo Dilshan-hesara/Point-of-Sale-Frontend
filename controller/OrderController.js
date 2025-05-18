@@ -159,6 +159,17 @@ $('#placeOrder').click(function() {
         Swal.fire("Error", "Please fill all required fields and add items to cart", "error");
         return;
     }
+    if (!/^\d*\.?\d+$/.test(discount)) {
+        Swal.fire("Invalid Input", "Please enter a numeric discount value.", "error");
+        return;
+    }
+
+
+    if (discount < 0 || discount > 100) {
+        Swal.fire("warning", "Invalid Discount Discount must be between 0% and 100%.","error");
+
+        return;
+    }
 
 
     const subTotal = cart.reduce((sum, item) => sum + item.total, 0);
