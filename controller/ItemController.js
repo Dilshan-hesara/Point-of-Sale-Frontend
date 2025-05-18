@@ -72,7 +72,6 @@ $("#saveAddItemBtn").click(function () {
         loadDashboardCounts();
 
 
-        // Swal.fire("Success", "Item Added Successfully", "success");
     }
 });
 

@@ -1,8 +1,8 @@
 import { customer_db, item_db, order_db, order_details_db } from "../db/db.js";
 import OrderModel from "../model/OrderModel.js";
 import OrderDetailModel from "../model/OrderDetailModel.js";
-// import {loadItemTableData} from "./ItemController";
-import ItemModel from "../model/itemModel.js";
+
+
 $('#selectCustomerId').change(function () {
     var selectedValue = $(this).val();
     customer_db.map(function (Customer) {
@@ -334,5 +334,4 @@ function loadDashboardCounts() {
 
 
 
-///////////////////////////////////////////
 
