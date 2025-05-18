@@ -31,15 +31,20 @@ let cart = [];
 $(document).ready(function() {
     // console.log("Customer DB:", customer_db);
     console.log(" DB:", item_db);
-    generateOrderId();
     setCurrentDate();
+    generateOrderId();
     clearOrderForm();
+
+    setTimeout(() => {
+        setCurrentDate();
+    }, 100);
 });
 
 
 function setCurrentDate() {
     const today = new Date().toISOString().split('T')[0];
     $('#orderDate').val(today);
+    console.log(today);
 }
 
 function generateOrderId() {
@@ -65,10 +70,10 @@ $('#addtocart').click(function() {
     const price = parseFloat($('#price').val());
     const getQty = parseInt($('#getQty').val());
 
-    // if (!code || !description || !price || !getQty) {
-    //     Swal.fire("Error", "Please select an item and enter quantity", "error");
-    //     return;
-    // }
+    if (!code || !description || !price || !getQty) {
+        Swal.fire("Error", "Please select an item and enter quantity", "error");
+        return;
+    }
 
     if (getQty <= 0 || getQty > availableQty) {
         Swal.fire("Error", "Invalid quantity", "error");
@@ -128,6 +133,7 @@ function calculateTotal() {
     const total = cart.reduce((sum, item) => sum + item.total, 0);
     $('#total').val(total.toFixed(2));
 
+    tot ==total;
     const discount = parseFloat($('#discount').val()) || 0;
     const finalTotal = total - discount;
     $('#subTotal').val(finalTotal.toFixed(2));
@@ -138,45 +144,47 @@ function calculateTotal() {
     }
 }
 
+
+
 $('#placeOrder').click(function() {
-    const orderId = $('#orderId').val();
-    const date = $('#orderDate').val();
+    // Validate required fields
+    const orderId = $('#orderId').val().trim();
+    const date = new Date().toISOString().split('T')[0];
     const customerId = $('#selectCustomerId').val();
-    const customerName = $('#custName').val();
+    const customerName = $('#custName').val().trim();
     const discount = parseFloat($('#discount').val()) || 0;
     const cash = parseFloat($('#cash').val()) || 0;
-    const balance = parseFloat($('#balance').val()) || 0;
 
-    // if (!orderId || !date || !customerId || cart.length === 0) {
-    //     Swal.fire("Error", "Please fill all required fields and add items to cart", "error");
-    //     return;
-    // }
-
-    if (order_db.some(order => order.orderId === orderId)) {
-        Swal.fire("Error", "Order ID already exists", "error");
+    if (!orderId || cart.length === 0 || !customerId) {
+        Swal.fire("Error", "Please fill all required fields and add items to cart", "error");
         return;
     }
 
-    const newOrder = new OrderModel(orderId, date, customerId);
-    order_db.push(newOrder);
 
     const subTotal = cart.reduce((sum, item) => sum + item.total, 0);
     const finalTotal = subTotal - discount;
+    const balance = cash - finalTotal;
+
+    if (cash < finalTotal) {
+        Swal.fire("Error", `Insufficient cash. Balance required: ${finalTotal - cash}`, "error");
+        return;
+    }
+
+    const newOrder = new OrderModel(orderId, date, customerId, customerName, subTotal, discount, finalTotal, cash, balance);
+    order_db.push(newOrder);
 
     cart.forEach(item => {
         const detail = new OrderDetailModel(
             orderId,
             date,
             customerName,
+            item.code,
             item.description,
             item.price,
             item.orderQty,
-            subTotal,
-
-            discount ,
-
-        finalTotal
-
+            item.total,
+            discount,
+            finalTotal
         );
         order_details_db.push(detail);
 
@@ -188,18 +196,44 @@ $('#placeOrder').click(function() {
 
     Swal.fire({
         title: "Success!",
-        text: "Order placed successfully!",
+        text: `Order placed successfully! Balance: ${balance.toFixed(2)}`,
         icon: "success",
         confirmButtonText: "OK"
     }).then(() => {
-
         clearOrderForm();
         generateOrderId();
         loadOrderDetailsData();
         setCurrentDate();
         loadDashboardCounts();
+        loadItemTableData();
     });
 });
+
+$('#discount, #cash').on('input', function() {
+    updateOrderTotals();
+});
+
+function updateOrderTotals() {
+    const subTotal = cart.reduce((sum, item) => sum + item.total, 0);
+    const discount = parseFloat($('#discount').val()) || 0;
+
+    const discountAmount = subTotal * (discount / 100);
+    const finalTotal = subTotal - discountAmount;
+
+    const cash = parseFloat($('#cash').val()) || 0;
+    const balance = cash - finalTotal;
+
+    $('#subTotal').val(subTotal.toFixed(2));
+    $('#finalTotal').val(finalTotal.toFixed(2));
+    $('#balance').val(balance.toFixed(2));
+
+
+    if (balance < 0) {
+        $('#balance').css('color', 'red');
+    } else {
+        $('#balance').css('color', 'green');
+    }
+}
 
 function clearOrderForm() {
 
