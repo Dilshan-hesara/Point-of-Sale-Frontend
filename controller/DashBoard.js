@@ -1,5 +1,8 @@
 import {customer_db,item_db,order_db} from "../db/db.js";
 
+$(document).ready(function () {
+    loadDashboardCounts();
+});
 
 function loadDashboardCounts() {
     $('#customerCount').text(customer_db.length);
@@ -7,6 +10,3 @@ function loadDashboardCounts() {
     $('#ordersCount').text(order_db.length);
 }
 
-$(document).ready(function () {
-    loadDashboardCounts();
-});

@@ -8,25 +8,13 @@ $(document).ready(function() {
 
 });
 
-function generateCustomerId() {
-    if (customer_db.length === 0) {
-        $('#customer_id').val('C001');
-    } else {
-        const lastId = customer_db[customer_db.length - 1].customerId;
-        const num = parseInt(lastId.substring(3)) + 1;
-        $('#customer_id').val('C' + num.toString().padStart(3, '0'));
-    }
-}
-
-
-
-let selectedIndex = -1;
 
 $("#add-customer").click(function (){
 
     $('#customerModal').modal('show');
 
 })
+
 $("#customer-save").click(function () {
     let customerId = $("#customer_id").val();
     let customerName = $("#customerName").val();
@@ -80,42 +68,6 @@ $("#customer-save").click(function () {
 
         // Swal.fire("Success", "Customer Added Successfully", "success");
     }
-});
-
-function loadDashboardCounts() {
-    $('#customerCount').text(customer_db.length);
-    $('#itemsCount').text(item_db.length);
-    $('#ordersCount').text(order_db.length);
-}
-
-
-function loadCustomerDropdown() {
-    $('#selectCustomerId').empty();
-    $('#selectCustomerId').append(`<option>Select Customer ID</option>`);
-    customer_db.forEach(customer => {
-        $('#selectCustomerId').append(
-            $('<option>', {
-                value: customer.customerId,
-                text: customer.customerId,
-            })
-        );
-    });
-}
-
-
-$('#Cup').click(function () {
-    if (selectedIndex === -1) {
-        Swal.fire("Error", "Please select a customer to update", "error");
-        return;
-    }
-
-    const selectedCustomer = customer_db[selectedIndex];
-    $('#customer_idU').val(selectedCustomer.customerId);
-    $('#customerNameU').val(selectedCustomer.customerName);
-    $('#customerAddressU').val(selectedCustomer.address);
-    $('#customerContactU').val(selectedCustomer.phoneNumber);
-
-    $('#customerModalU').modal('show');
 });
 
 $('#customer-update').click(function () {
@@ -195,6 +147,67 @@ $('#customer-delete').click(function () {
     });
 });
 
+$('#Cup').click(function () {
+    if (selectedIndex === -1) {
+        Swal.fire("Error", "Please select a customer to update", "error");
+        return;
+    }
+
+    const selectedCustomer = customer_db[selectedIndex];
+    $('#customer_idU').val(selectedCustomer.customerId);
+    $('#customerNameU').val(selectedCustomer.customerName);
+    $('#customerAddressU').val(selectedCustomer.address);
+    $('#customerContactU').val(selectedCustomer.phoneNumber);
+
+    $('#customerModalU').modal('show');
+});
+
+$('#customer-tbody').on('click', 'tr', function () {
+    selectedIndex = $(this).index();
+    const customer = customer_db[selectedIndex];
+
+    $('#customer_idU').val(customer.customerId);
+    $('#customerNameU').val(customer.customerName);
+    $('#customerAddressU').val(customer.address);
+    $('#customerContactU').val(customer.phoneNumber);
+});
+
+$('.btn-outline-success').on('click', function () {
+    clearForm();
+});
+
+
+let selectedIndex = -1;
+
+function generateCustomerId() {
+    if (customer_db.length === 0) {
+        $('#customer_id').val('C001');
+    } else {
+        const lastId = customer_db[customer_db.length - 1].customerId;
+        const num = parseInt(lastId.substring(3)) + 1;
+        $('#customer_id').val('C' + num.toString().padStart(3, '0'));
+    }
+}
+
+function loadDashboardCounts() {
+    $('#customerCount').text(customer_db.length);
+    $('#itemsCount').text(item_db.length);
+    $('#ordersCount').text(order_db.length);
+}
+
+function loadCustomerDropdown() {
+    $('#selectCustomerId').empty();
+    $('#selectCustomerId').append(`<option>Select Customer ID</option>`);
+    customer_db.forEach(customer => {
+        $('#selectCustomerId').append(
+            $('<option>', {
+                value: customer.customerId,
+                text: customer.customerId,
+            })
+        );
+    });
+}
+
 function loadCustomerTableData() {
     $('#customer-tbody').empty();
     customer_db.forEach((item, index) => {
@@ -208,16 +221,6 @@ function loadCustomerTableData() {
     });
 }
 
-$('#customer-tbody').on('click', 'tr', function () {
-    selectedIndex = $(this).index();
-    const customer = customer_db[selectedIndex];
-
-    $('#customer_idU').val(customer.customerId);
-    $('#customerNameU').val(customer.customerName);
-    $('#customerAddressU').val(customer.address);
-    $('#customerContactU').val(customer.phoneNumber);
-});
-
 function clearForm() {
     $('#customer_id').val('');
     $('#customerName').val('');
@@ -230,6 +233,3 @@ function clearForm() {
     $('#customerContactU').val('');
 }
 
-$('.btn-outline-success').on('click', function () {
-    clearForm();
-});

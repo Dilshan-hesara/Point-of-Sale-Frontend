@@ -3,6 +3,19 @@ import OrderModel from "../model/OrderModel.js";
 import OrderDetailModel from "../model/OrderDetailModel.js";
 
 
+$(document).ready(function() {
+    // console.log("Customer DB:", customer_db);
+    console.log(" DB:", item_db);
+    setCurrentDate();
+    generateOrderId();
+    clearOrderForm();
+
+    setTimeout(() => {
+        setCurrentDate();
+    }, 100);
+});
+
+
 $('#selectCustomerId').change(function () {
     var selectedValue = $(this).val();
     customer_db.map(function (Customer) {
@@ -24,59 +37,6 @@ $('#itemCode').change(function () {
         }
     })
 })
-
-function loadItemTableData() {
-    $('#item-tbody').empty();
-    item_db.forEach((item, index) => {
-        let row = `<tr>
-            <td>${item.item_code}</td>
-            <td>${item.item_description}</td>
-            <td>${item.item_qty}</td>
-            <td>${item.item_price}</td>
-        </tr>`;
-        $('#item-tbody').append(row);
-    });
-}
-
-//
-let cart = [];
-//
-
-$(document).ready(function() {
-    // console.log("Customer DB:", customer_db);
-    console.log(" DB:", item_db);
-    setCurrentDate();
-    generateOrderId();
-    clearOrderForm();
-
-    setTimeout(() => {
-        setCurrentDate();
-    }, 100);
-});
-
-
-function setCurrentDate() {
-    const today = new Date().toISOString().split('T')[0];
-    $('#orderDate').val(today);
-    console.log(today);
-}
-
-function generateOrderId() {
-    if (order_db.length === 0) {
-        $('#orderId').val('ORD001');
-    } else {
-        const lastId = order_db[order_db.length - 1].orderId;
-        const num = parseInt(lastId.substring(3)) + 1;
-        $('#orderId').val('ORD' + num.toString().padStart(3, '0'));
-    }
-}
-
-
-
-
-
-
-const availableQty = parseInt($('#qty').val());
 
 $('#addtocart').click(function() {
     const code = $('#itemCode').val();
@@ -123,50 +83,6 @@ $('#addtocart').click(function() {
     $('#price').val('');
     $('#getQty').val('');
 });
-
-function renderCartTable() {
-    $('#cart-table-body').empty();
-    cart.forEach((item, index) => {
-        $('#cart-table-body').append(`
-            <tr>
-                <td>${item.code}</td>
-                <td>${item.description}</td>
-                <td>${item.price.toFixed(2)}</td>
-                <td>${item.orderQty}</td>
-                <td>${item.total.toFixed(2)}</td>
-                <td><button class="btn btn-danger btn-sm" onclick="removeItem(${index})">Remove</button></td>
-            </tr>
-        `);
-    });
-}
-
-window.removeItem = function(index) {
-    cart.splice(index, 1);
-    renderCartTable();
-    calculateTotal();
-};
-let finalTotal = "";
-
-function calculateTotal() {
-    const total = cart.reduce((sum, item) => sum + item.total, 0);
-    $('#total').val(total.toFixed(2));
-
-    // tot ==total;
-    const discount = parseFloat($('#discount').val()) || 0;
-
-    let discountAmount = total * discount / 100;
-
-    const finalTota = total - discountAmount;
-
-    finalTotal = finalTota;
-    $('#subTotal').val(finalTota.toFixed(2));
-
-    const cash = parseFloat($('#cash').val()) || 0;
-    if (cash > 0) {
-        $('#balance').val((cash - finalTota).toFixed(2));
-    }
-}
-
 
 $('#placeOrder').click(function() {
     // Validate required fields
@@ -249,6 +165,86 @@ $('#discount, #cash').on('input', function() {
     updateOrderTotals();
 });
 
+$('#discount, #cash').on('input', function() {
+    calculateTotal();
+});
+
+const availableQty = parseInt($('#qty').val());
+
+let cart = [];
+
+function loadItemTableData() {
+    $('#item-tbody').empty();
+    item_db.forEach((item, index) => {
+        let row = `<tr>
+            <td>${item.item_code}</td>
+            <td>${item.item_description}</td>
+            <td>${item.item_qty}</td>
+            <td>${item.item_price}</td>
+        </tr>`;
+        $('#item-tbody').append(row);
+    });
+}
+
+function setCurrentDate() {
+    const today = new Date().toISOString().split('T')[0];
+    $('#orderDate').val(today);
+    console.log(today);
+}
+
+function generateOrderId() {
+    if (order_db.length === 0) {
+        $('#orderId').val('ORD001');
+    } else {
+        const lastId = order_db[order_db.length - 1].orderId;
+        const num = parseInt(lastId.substring(3)) + 1;
+        $('#orderId').val('ORD' + num.toString().padStart(3, '0'));
+    }
+}
+
+function renderCartTable() {
+    $('#cart-table-body').empty();
+    cart.forEach((item, index) => {
+        $('#cart-table-body').append(`
+            <tr>
+                <td>${item.code}</td>
+                <td>${item.description}</td>
+                <td>${item.price.toFixed(2)}</td>
+                <td>${item.orderQty}</td>
+                <td>${item.total.toFixed(2)}</td>
+                <td><button class="btn btn-danger btn-sm" onclick="removeItem(${index})">Remove</button></td>
+            </tr>
+        `);
+    });
+}
+
+window.removeItem = function(index) {
+    cart.splice(index, 1);
+    renderCartTable();
+    calculateTotal();
+};
+let finalTotal = "";
+
+function calculateTotal() {
+    const total = cart.reduce((sum, item) => sum + item.total, 0);
+    $('#total').val(total.toFixed(2));
+
+    // tot ==total;
+    const discount = parseFloat($('#discount').val()) || 0;
+
+    let discountAmount = total * discount / 100;
+
+    const finalTota = total - discountAmount;
+
+    finalTotal = finalTota;
+    $('#subTotal').val(finalTota.toFixed(2));
+
+    const cash = parseFloat($('#cash').val()) || 0;
+    if (cash > 0) {
+        $('#balance').val((cash - finalTota).toFixed(2));
+    }
+}
+
 function updateOrderTotals() {
     const subTotal = cart.reduce((sum, item) => sum + item.total, 0);
     const discount = parseFloat($('#discount').val()) || 0;
@@ -292,11 +288,6 @@ function clearOrderForm() {
     cart = [];
 }
 
-$('#discount, #cash').on('input', function() {
-    calculateTotal();
-});
-
-
 const loadOrderDetailsData = () => {
     $('#orderView-table').empty();
     order_details_db.map((item, index) =>{
@@ -324,7 +315,6 @@ const loadOrderDetailsData = () => {
         $('#orderView-table').append(data);
     })
 }
-
 
 function loadDashboardCounts() {
     $('#customerCount').text(customer_db.length);
